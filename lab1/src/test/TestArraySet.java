@@ -62,6 +62,16 @@ public class TestArraySet {
 			assertTrue("Element not found in set:" + i, s.contains(i));
 		}
 	}
+	
+	@Test
+	public final void testAddAllMethod() {
+		for (int i = 1; i < 3; i++) {
+			s.add(i);
+		}
+		s.addAll(s);
+		s.addAll(s);
+		s.addAll(s);
+	}
 
 	@Test
 	public final void testManyDuplicates() {
