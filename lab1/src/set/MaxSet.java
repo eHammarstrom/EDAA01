@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 public class MaxSet<E extends Comparable<E>> extends ArraySet<E> {
 	private E maxElement;
+	//Iterator<? extends E> iter = super.iterator();
 	
 	/**
 	 * Constructs a new empty set.
@@ -21,7 +22,11 @@ public class MaxSet<E extends Comparable<E>> extends ArraySet<E> {
 	@throws NoSuchElementException if this set is empty 
 	*/ 
 	public E getMax() {
-		return null;
+		if (!super.isEmpty()) {
+			return maxElement;
+		} else  {
+			throw new NoSuchElementException("Set is empty.");
+		}
 	}
 	
 	/** 
@@ -31,6 +36,15 @@ public class MaxSet<E extends Comparable<E>> extends ArraySet<E> {
 	 * @return true if the specified element was added
 	 */
 	public boolean add(E x) {
+		if (super.add(x)) {
+			if (maxElement != null) {
+				if (x.compareTo(maxElement) > 0)
+					maxElement = x;
+			} else {
+				maxElement = x;
+			}
+			return true;
+		}
 		return false;
 	}
 	
@@ -41,6 +55,15 @@ public class MaxSet<E extends Comparable<E>> extends ArraySet<E> {
 	 * @return true if the set contained the specified element
 	 */
 	public boolean remove(Object x) {
+		if (super.remove(x)) {
+			if (x.equals(maxElement)) {
+				maxElement = null;
+				for (E e : this)
+					if (maxElement == null || e.compareTo(maxElement) > 0)
+						maxElement = e;
+			}
+			return true;
+		}
 		return false;
 	}
 	
@@ -51,7 +74,7 @@ public class MaxSet<E extends Comparable<E>> extends ArraySet<E> {
 	@return true if this set changed as a result of the call 
 	*/
 	public boolean addAll(SimpleSet<? extends E> c) {
-		return false;
+		return super.addAll(c);
 	}
 	
 }

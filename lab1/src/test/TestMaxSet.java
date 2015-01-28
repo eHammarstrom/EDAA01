@@ -95,6 +95,11 @@ public class TestMaxSet {
 			s2.add(i);
 		}
 		s.addAll(s2);
-		assertEquals("Wrong value of max: ", new Integer(2000), s.getMax());
+		ArraySet<Integer> s3 = new ArraySet<Integer>();
+		s3.add(2043);
+		s3.add(2323);
+		s3.add(2100);
+		s.addAll(s3);
+		assertEquals("Wrong value of max: ", new Integer(2323), s.getMax());
 	}
 }
