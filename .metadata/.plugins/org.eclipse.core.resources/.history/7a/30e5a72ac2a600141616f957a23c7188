@@ -1,0 +1,23 @@
+package set;
+
+public class UniqueClass {
+	
+	public static void main(String[] args) {
+		int[] test = { 0, 3, 2, 4, 7, 5 };
+		
+		uniqueElements(test);
+	}
+	
+	public static int[] uniqueElements(int[] ints) {
+		MaxSet<Integer> ms = new MaxSet<Integer>();
+		int[] ret = new int[ints.length];
+		
+		for (int i : ints) {
+			ms.add(i);
+		}
+		
+		System.out.print(ms.getMax());
+		
+		return null;
+	}
+}

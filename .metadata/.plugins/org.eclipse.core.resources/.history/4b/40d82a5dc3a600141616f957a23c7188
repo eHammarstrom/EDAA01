@@ -1,0 +1,32 @@
+package set;
+
+public class UniqueClass {
+	
+	public static void main(String[] args) {
+		int[] test = { 0, 3, 2, 4, 7, 5 };
+		
+		int[] asd = uniqueElements(test);
+		
+		for (int i : asd) {
+			System.out.print(asd[i]);
+		}
+	}
+	
+	public static int[] uniqueElements(int[] ints) {
+		MaxSet<Integer> ms = new MaxSet<Integer>();
+		int[] ret = new int[ints.length];
+		
+		for (int i : ints) {
+			ms.add(i);
+		}
+		
+		System.out.print(ms.getMax());
+		
+		for (int i : ms) {
+			ret[i] = ms.getMax();
+			ms.remove(ms.getMax()	);
+		}
+		
+		return ret;
+	}
+}
