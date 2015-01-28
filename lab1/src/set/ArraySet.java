@@ -22,9 +22,8 @@ public class ArraySet<E> implements SimpleSet<E> {
 	 */
 	public boolean add(E x) {
 		if(!data.contains(x))  {
-			data.add(x);
-			return true;
-		} else {
+			return data.add(x);
+			} else {
 			return false;
 		}
 	}
@@ -39,10 +38,10 @@ public class ArraySet<E> implements SimpleSet<E> {
 	public boolean addAll(SimpleSet<? extends E> s) {
 		boolean addStatus = false;
 		for (E element : s) {
-			System.out.println("we are looping and adding: " + element);
-			addStatus = (add(element)) ? true : false;
+//			System.out.println("we are looping and adding: " + element);
+			if(add(element)) addStatus = true;
 		}
-		System.out.println(addStatus);
+//		System.out.println(addStatus);
 		return addStatus;
 	}
 

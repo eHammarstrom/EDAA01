@@ -84,6 +84,12 @@ public class TestMaxSet {
 		s.add(2);
 		assertEquals("Wrong value of max: ", new Integer(2), s.getMax());
 	}
+	@Test
+	public final void testMaxAfterMakeEmptyTwo() {
+		s.add(1);
+		assertFalse("Wasn't false", s.addAll(new MaxSet<Integer>()));
+		assertEquals("Incorrect size", 1, s.size());
+	}
 
 	@Test
 	public final void testMaxAfterAddAll() {
