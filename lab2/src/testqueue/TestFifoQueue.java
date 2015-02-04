@@ -39,8 +39,12 @@ public class TestFifoQueue {
 	@Test
 	public final void testPeek() {
 		myIntQueue.offer(1);
+		myIntQueue.offer(2);
 		int i = myIntQueue.peek();
+		myIntQueue.poll();
+		int k = myIntQueue.peek();
 		assertEquals("peek on queue of size 1", 1, i);
+		assertEquals("blablalba", 2, k);
 		assertTrue(myIntQueue.size() == 1);
 	}
 
@@ -50,8 +54,11 @@ public class TestFifoQueue {
 	@Test
 	public final void testPoll() {
 		myIntQueue.offer(1);
+		myIntQueue.offer(2);
 		int i = myIntQueue.poll();
+		int q = myIntQueue.poll();
 		assertEquals("poll on queue of size 1", 1, i);
+		assertEquals("second poll on queue of size 2", 2, q);
 		assertTrue("Wrong size after poll", myIntQueue.size() == 0);
 	}
 
@@ -126,5 +133,26 @@ public class TestFifoQueue {
 		assertTrue("Wrong size after poll", myIntQueue.size() == 0);
 		assertTrue("Queue not empty after poll", myIntQueue.isEmpty());
 	}
-
+	
+	/**
+	 * Test that iterator is able to loop through queue
+	 */
+	@Test
+	public final void testQueueIterator() {
+		for (int i = 1; i <= 10; i++) {
+			myIntQueue.offer(i);
+		}
+		//int k = myIntQueue.poll();
+		//assertEquals("Check last num", 1, k);
+		
+		Iterator<Integer> itr = myIntQueue.iterator();
+		int i = 1;
+		while (itr.hasNext()) {
+			int ans = itr.next();
+			System.out.println(ans);
+			assertEquals("Check if correct num shows up", i, ans);	
+			myIntQueue.poll();
+			i++;
+		}
+	}
 }
