@@ -28,7 +28,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		}
 		
 		public boolean hasNext() {
-			return (pos != null) ? true : false;
+			return (pos != null);
 		}
 		
 		public E next() {
@@ -69,7 +69,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		if (this.size() == 0) {
 			last = newLast;
 			newLast.next = newLast;
-			newLast.element = x;
+//			newLast.element = x;
 		} else {
 			newLast.next = last.next;
 			last.next = newLast;
@@ -95,7 +95,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			if (this.size() == 1)
 				last = null;
 			else {
-				last.next = null;
+//				last.next = null;
 				last.next = removed.next;
 			}
 			size--;
@@ -123,12 +123,28 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @param q the queue to append
 	 */
 	public void append(FifoQueue<E> q) {
-		if (q.size() > 0)
-			for (int i = 0; i < q.size(); i++) {
-				this.offer(q.poll());
-			}
-		else
-			throw new NoSuchElementException();
+		if (q.size() > 0 && last != null) {
+			/**
+			 * (q.last.next) - x - x - x - x - x - (q.last) <- q1
+			 * (last.next) - x - x - x - x - (last) <- q2
+			 */
+			
+			QueueNode<E> qLast = q.last;
+//			QueueNode<E> qFirst = q.last.next;
+//			QueueNode<E> thisLast = last;
+			QueueNode<E> thisFirst = last.next;
+			
+			last.next = q.last.next;
+			q.last.next = thisFirst;
+//			thisLast = q.last;
+//			q.last.next = last;
+			last = qLast;
+		} else if(q.size() > 0) {
+			last = q.last;
+			last.next = q.last.next;
+		}
+		q.last = null;
+		q.size = 0;
 	}
 
 	private static class QueueNode<E> {

@@ -33,12 +33,13 @@ public class TestAppendFifoQueue {
 		myStringQueue2 = null;
 	}
 	
-	@Test(expected=NoSuchElementException.class)
+	@Test
 	public void testTwoEmptyQueues() {
 		myIntQueue.append(myIntQueue2);
+		assertEquals("", null, myIntQueue.poll());
 	}
 	
-	@Test(expected=NoSuchElementException.class)
+	@Test
 	public void testEmptyToNoneEmpty() {
 		for (int i = 0; i < 11; i++) {
 			myIntQueue.offer(i);
@@ -53,9 +54,11 @@ public class TestAppendFifoQueue {
 		}
 		
 		myIntQueue.append(myIntQueue2);
+		
+		assertEquals("", 0, myIntQueue2.size());
 	}
 	
-	@Test(expected=NoSuchElementException.class)
+	@Test
 	public void bottomsUp() {
 		int q = 11;
 		for (int i = 1; i <= 10; i++) {
@@ -72,10 +75,21 @@ public class TestAppendFifoQueue {
 		int i = 1;
 		while (iter.hasNext()) {
 			int ans = iter.next();
+			System.out.println(ans);
 			assertEquals("Expected loop 1..20", i, ans);
 			i++;
 		}
 		
 		myIntQueue.append(myIntQueue2);
+
+		Iterator<Integer> iter2 = myIntQueue.iterator();
+		
+		int x = 1;
+		while (iter2.hasNext()) {
+			int ans = iter2.next();
+			System.out.println(ans);
+			assertEquals("Expected loop 1..20", x, ans);
+			x++;
+		}
 	}
 }
