@@ -1,0 +1,9 @@
+package easy_200_floodfill;
+
+public class Main {
+	public static void main(String[] args) {
+//		Picture picture = new Picture(30, 20);
+		Picture picture = new Picture("test1.txt");
+		picture.printPicture();
+	}
+}
