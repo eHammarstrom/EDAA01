@@ -1,5 +1,7 @@
 package fractal;
+
 import java.awt.Graphics;
+import mountain.Point;
 
 public class TurtleGraphics {
 	private Graphics g;	
@@ -38,6 +40,18 @@ public class TurtleGraphics {
 		}
 		x = newX;
 		y = newY;
+	}
+	
+	/** The turtle moves to the location (newX,newY) and draws if the pen i lowered.
+	 * @param  newX the x coordinate of the new location
+	 * @param  newY the y coordinate of the new location
+	 */
+	public void forwardTo(Point newPoint) {
+		if (isPenDown) {
+			g.drawLine((int) x, (int) y, (int) newPoint.getX(), (int) newPoint.getY());
+		}
+		x = newPoint.getX();
+		y = newPoint.getY();
 	}
 
 	/** The turtle moves n pixels forward and draws if the pen i lowered.
