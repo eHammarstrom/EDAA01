@@ -1,0 +1,43 @@
+package mountain;
+
+import fractal.*;
+
+public class Mountain extends Fractal {
+//	private int length;
+	private Point p1, p2, p3;
+	
+	public Mountain(Point p1, Point p2, Point p3) {
+		super();
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
+	}
+
+	public String getTitle() {
+		return "Mountain fractal";
+	}
+	
+	public void draw(TurtleGraphics turtle) {
+//		turtle.moveTo(turtle.getWidth() / 2.0 - length / 2.0, 
+//				turtle.getHeight() / 2.0 + Math.sqrt(3.0) * length / 4.0);
+		drawTriangle(turtle, order, this.p1, this.p2, this.p3);
+	}
+	
+	private void drawTriangle(TurtleGraphics turtle, int order, Point p1, Point p2, Point p3) {
+		if (order == 0) {
+			turtle.penDown();
+			turtle.moveTo(p1.getX(), p1.getY());
+			turtle.forwardTo(p2);
+			turtle.forwardTo(p3);
+			turtle.forwardTo(p1);
+			turtle.penDown();
+		} else {
+			drawTriangle(turtle, order - 1, this.p1, this.p2, this.p3);
+			Point p1temp = p1;
+			p1 = new Point((p1.getX() + p2.getX()) / 2, (p1.getY() + p2.getY()) / 2);
+			p2 = new Point((p2.getX() + p3.getX()) / 2, (p2.getY() + p3.getY()) / 2);
+			p3 = new Point((p1temp.getX() + p3.getX()) / 2, (p1temp.getY() + p3.getY()) / 2);
+			drawTriangle(turtle, order - 1, p1, p2, p3);
+		}
+	}
+}
