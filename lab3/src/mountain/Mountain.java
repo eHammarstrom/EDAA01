@@ -25,8 +25,8 @@ public class Mountain extends Fractal {
 	
 	private void drawTriangle(TurtleGraphics turtle, int order, Point innerP1, Point innerP2, Point innerP3) {
 		if (order == 0) {
-			turtle.penDown();
 			turtle.moveTo(innerP1.getX(), innerP1.getY());
+			turtle.penDown();
 			turtle.forwardTo(innerP2);
 			turtle.forwardTo(innerP3);
 			turtle.forwardTo(innerP1);
@@ -38,8 +38,11 @@ public class Mountain extends Fractal {
 			innerP2 = new Point((innerP2.getX() + innerP3.getX()) / 2, (innerP2.getY() + innerP3.getY()) / 2);
 			innerP3 = new Point((p1temp.getX() + innerP3.getX()) / 2, (p1temp.getY() + innerP3.getY()) / 2);
 			drawTriangle(turtle, order - 1, innerP1, innerP2, innerP3);
-			turtle.moveTo(this.p1.getX(), this.p1.getY());
-			drawTriangle(turtle, order - 1, this.p1, innerP1, innerP3);
+			turtle.moveTo(innerP1.getX(), innerP1.getY());
+			turtle.forwardTo(this.p3);
+//			drawTriangle(turtle, order - 1, this.p1, innerP1, innerP3);
+//			drawTriangle(turtle, order - 1, innerP1, this.p2, innerP3);
+//			drawTriangle(turtle, order - 1, innerP1, innerP1, this.p3);
 		}
 	}
 }
