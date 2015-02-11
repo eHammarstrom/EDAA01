@@ -27,4 +27,18 @@ public class Side {
 	public Point getB() {
 		return b;
 	}
+	
+	public boolean equals(Object s) {
+		if (s instanceof Side) {
+			Side side = (Side)s;
+
+			if (this.a.equals(side.a) && this.b.equals(side.b))
+				return true;
+			
+			
+			if (this.a.equals(side.b) && this.b.equals(side.a))
+				return true;
+		}
+		return false;
+	}
 }

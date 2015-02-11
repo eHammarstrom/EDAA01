@@ -26,10 +26,10 @@ public class Mountain extends Fractal {
 	public void draw(TurtleGraphics turtle) {
 //		turtle.moveTo(turtle.getWidth() / 2.0 - length / 2.0, 
 //				turtle.getHeight() / 2.0 + Math.sqrt(3.0) * length / 4.0);
-		drawTriangle(turtle, order, pa, pb, pc);
+		drawTriangle(turtle, order, pa, pb, pc, dev);
 	}
 	
-	private void drawTriangle(TurtleGraphics turtle, int order, Point oldA, Point oldB, Point oldC) {
+	private void drawTriangle(TurtleGraphics turtle, int order, Point oldA, Point oldB, Point oldC, double dev) {
 		if (order == 0) {
 			turtle.moveTo(oldA.getX(), oldA.getY());
 			turtle.penDown();
@@ -45,30 +45,63 @@ public class Mountain extends Fractal {
 //			Point p1temp = innerP1;
 ////		Point p2temp = innerP2;
 //			Point p3temp = innerP3;
-			sides.removeAll(sides);
+
+//			sides.removeAll(sides);
+
 			Point ab = new Point((oldA.getX() + oldB.getX()) / 2, randFunc(dev) + ((oldA.getY() + oldB.getY()) / 2));
 			Point bc = new Point((oldB.getX() + oldC.getX()) / 2, randFunc(dev) + ((oldB.getY() + oldC.getY()) / 2));
 			Point ac = new Point((oldA.getX() + oldC.getX()) / 2, randFunc(dev) + ((oldA.getY() + oldC.getY()) / 2));
+
 			Side sideAB = new Side(oldA, oldB, ab);
 			Side sideBC = new Side(oldB, oldC, bc);
 			Side sideAC = new Side(oldA, oldC, ac);
-			sides.add(sideAB);
-			sides.add(sideBC);
-			sides.add(sideAC);
-//			sides.
+
+			if (sides.size() == 0) {
+				sides.add(AB, sideAB);
+				sides.add(BC, sideBC);
+				sides.add(AC, sideAC);
+			}
+
+			if (sides.contains(sideAB)) {
+				sideAB = sides.get(sides.indexOf(sideAB));
+				sides.remove(sides.indexOf(sideAB));
+			}
+			else {
+//				sides.remove(AB);
+				sides.add(AB, sideAB);
+			}
+			
+			if (sides.contains(sideBC)) {
+				sideBC = sides.get(sides.indexOf(sideBC));
+				sides.remove(sides.indexOf(sideBC));
+			}
+			else {
+				//sides.remove(BC);
+				sides.add(BC, sideBC);
+			}
+
+			if (sides.contains(sideAC)) {
+				sideAC = sides.get(sides.indexOf(sideAC));
+				sides.remove(sides.indexOf(sideAC));
+			}
+			else {
+//				sides.remove(AC);
+				sides.add(AC, sideAC);
+			}
+
 //			this.p1 = innerP1;
 //			this.p2 = innerP2;
 //			this.p3 = innerP3;
 			
-			drawTriangle(turtle, order - 1, sides.get(AB).getMid(), sides.get(BC).getMid(), sides.get(AC).getMid());
-			drawTriangle(turtle, order - 1, oldA, sides.get(AC).getMid(), sides.get(AB).getMid());
-			drawTriangle(turtle, order - 1, sides.get(AB).getMid(), oldB, sides.get(BC).getMid());
-			drawTriangle(turtle, order - 1, sides.get(AC).getMid(), sides.get(BC).getMid(), oldC);
+			drawTriangle(turtle, order - 1, sideAB.getMid(), sideBC.getMid(), sideAC.getMid(), dev / 2.0);
+			drawTriangle(turtle, order - 1, oldA, sideAC.getMid(), sideAB.getMid(), dev / 2.0);
+			drawTriangle(turtle, order - 1, sideAB.getMid(), oldB, sideBC.getMid(), dev / 2.0);
+			drawTriangle(turtle, order - 1, sideAC.getMid(), sideBC.getMid(), oldC, dev / 2.0);
 			
-			/* drawTriangle(turtle, order - 1, ab, bc, ac);
+/*			drawTriangle(turtle, order - 1, ab, bc, ac);
 			drawTriangle(turtle, order - 1, oldA, ac, ab);
 			drawTriangle(turtle, order - 1, ab, oldB, bc);
-			drawTriangle(turtle, order - 1, ac, bc, oldC); */
+			drawTriangle(turtle, order - 1, ac, bc, oldC);*/
 			
 //			innerP1 = new Point((innerP1.getX() + p2temp.getX()) / 2, (innerP1.getY() + p2temp.getY()) / 2);
 //			turtle.moveTo(innerP2);
