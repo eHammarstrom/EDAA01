@@ -3,6 +3,7 @@ package bst;
 public class BinarySearchTree<E extends Comparable<? super E>> {
 	BinaryNode<E> root;
     int size;
+    int height;
     
 	/**
 	 * Constructs an empty binary searchtree.
@@ -17,6 +18,19 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
+		return add(root, new BinaryNode(x));
+	}
+	
+	private boolean add(BinaryNode<E> current, BinaryNode<E> newNode) {
+		if (current == null) {
+			current = newNode;
+			return true;
+		} else if (newNode.element.compareTo(current.element) > 0) {
+			add(current.left, newNode);
+		} else if (newNode.element.compareTo(current.element) < 0) {
+			add(current.right, newNode);
+		}
+
 		return false;
 	}
 	
@@ -25,7 +39,30 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return the height of the tree
 	 */
 	public int height() {
-		return 0;
+		return height(root);
+	}
+	
+	/**
+	 * height help method?
+	 * @param node to count from
+	 * @return the farthest node length, the "leaf".
+	 */
+	private int height(BinaryNode<E> current) {
+		if (current == null)
+			return -1;
+		
+		if (height(current.left) > height(current.right))
+			return height(current.left) + 1;
+
+		return height(current.right);
+	}
+	
+	/**
+	 * Checks if tree is empty.
+	 * @return true if tree is empty.
+	 */
+	public boolean isEmpty() {
+		return (size == 0);
 	}
 	
 	/**
@@ -33,9 +70,21 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return the number of elements in this tree
 	 */
 	public int size() {
-		return 0;
+		return size(root);
 	}
 	
+	/**
+	 * Size helper method
+	 * @param current = root
+	 * @return +1 for the node you've passed and head further down the tree.
+	 */
+	private int size(BinaryNode<E> current) {
+		if (current == null)
+			return 0;
+		
+		return (size(current.left) + size(current.right) + 1);
+	}
+
 	/**
 	 * Print tree contents in inorder.
 	 */
