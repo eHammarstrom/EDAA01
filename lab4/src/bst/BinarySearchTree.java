@@ -4,6 +4,26 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	BinaryNode<E> root;
     int size;
     int height;
+    boolean hasAdded;
+    
+    public static void main(String[] args) {
+    	BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+    	
+    	bst.add(6);
+    	
+    	for (int i = 1; i < 11; i++)
+    		bst.add(i);
+    	
+    	System.out.println("Size: " + bst.size());
+    	
+    	System.out.println("Height: " + bst.height());
+    	
+    	bst.printTree();
+    	
+    	BSTVisualizer bstv = new BSTVisualizer("Test", 400, 400);
+    	
+    	bstv.drawTree(bst);
+    }
     
 	/**
 	 * Constructs an empty binary searchtree.
@@ -18,21 +38,42 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		return add(root, new BinaryNode(x));
+		root = add(root, x);
+		
+		return hasAdded;
+		
+//		int tempSize = this.size();
+		
+//		add(root, new BinaryNode<E>(x));
+		
+//		return (tempSize < this.size());
 	}
 	
-	private boolean add(BinaryNode<E> current, BinaryNode<E> newNode) {
+	private BinaryNode<E> add(BinaryNode<E> current, E x) {
+		if (current == null) {
+			hasAdded = true;
+			return new BinaryNode<E>(x);
+		} else if (x.compareTo(current.element) == 0) {
+			hasAdded = false;
+			return current;
+		} else if (x.compareTo(current.element) < 0) {
+			current.left = add(current.left, x);
+			return current;
+		} else {
+			current.right = add(current.right, x);
+			return current;
+		}
+	}
+	
+/*	private void add(BinaryNode<E> current, BinaryNode<E> newNode) {
 		if (current == null) {
 			current = newNode;
-			return true;
-		} else if (newNode.element.compareTo(current.element) > 0) {
-			add(current.left, newNode);
 		} else if (newNode.element.compareTo(current.element) < 0) {
+			add(current.left, newNode);
+		} else if (newNode.element.compareTo(current.element) > 0) {
 			add(current.right, newNode);
 		}
-
-		return false;
-	}
+	}*/
 	
 	/**
 	 * Computes the height of tree.
@@ -53,8 +94,8 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 		
 		if (height(current.left) > height(current.right))
 			return height(current.left) + 1;
-
-		return height(current.right);
+		else
+			return height(current.right) + 1;
 	}
 	
 	/**
@@ -89,14 +130,24 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Print tree contents in inorder.
 	 */
 	public void printTree() {
-
+		printInorderTraversal(root, "root");
 	}
 
+	private void printInorderTraversal(BinaryNode<E> current, String pos) {
+		if (current == null) {
+			System.out.print("null\n");
+		} else {
+			printInorderTraversal(current.left, new String("left"));
+			System.out.print(pos + ": " + current.element.toString() + "\n");
+			printInorderTraversal(current.right, new String("right"));
+		}
+	}
+	
 	/** 
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-
+		
 	}
 	
 	/*
@@ -105,8 +156,16 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Returns the index of the last inserted element + 1 (the first empty
 	 * position in a).
 	 */
-	private int toArray(BinaryNode<E> n, E[] a, int index) {
-		return 0;
+	private int toArray(BinaryNode<E> current, E[] a, int index) {
+		if (current == null && index == 0)
+			return -1;
+		else {
+			toArray(current.left, a, index + 1);
+			a[index] = current.element;
+			toArray(current.right, a, index + 1);
+			
+			return index + 1;
+		}
 	}
 	
 	/*
@@ -115,7 +174,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(E[] a, int first, int last) {
-		return null;
+		
 	}
 	
 
