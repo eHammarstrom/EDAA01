@@ -10,9 +10,16 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
     	BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
     	
     	bst.add(6);
+    	bst.add(3);
+    	bst.add(9);
+    	bst.add(11);
+    	bst.add(13);
+    	bst.add(1);
+    	bst.add(7);
+    	bst.add(5);
     	
-    	for (int i = 1; i < 11; i++)
-    		bst.add(i);
+//    	for (int i = 1; i < 11; i++)
+//    		bst.add(i);
     	
     	System.out.println("Size: " + bst.size());
     	
@@ -23,6 +30,14 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
     	BSTVisualizer bstv = new BSTVisualizer("Test", 400, 400);
     	
     	bstv.drawTree(bst);
+    	
+    	bst.rebuild();
+    	
+    	bstv.drawTree(bst);
+    	
+    	System.out.println("NEW: ");
+    	
+    	bst.printTree();
     }
     
 	/**
@@ -147,7 +162,22 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-		
+		if (root != null) {
+			E[] a = (E[]) new Comparable[size()];
+			//toArray(root, a, 0);
+			
+			root = buildTree(a, 0, toArray(root, a, 0));
+			
+			for (E e : a) {
+				if (e != null)
+					System.out.println("Array: " + e);
+			}
+			
+			
+			//root = buildTree(a, 0, size() - 1);
+		} else {
+			System.out.println("Empty BinaryTree.");
+		}
 	}
 	
 	/*
@@ -157,15 +187,17 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * position in a).
 	 */
 	private int toArray(BinaryNode<E> current, E[] a, int index) {
-		if (current == null && index == 0)
-			return -1;
-		else {
-			toArray(current.left, a, index + 1);
+		/* if (current != null) {
+			index = toArray(current.left, a, index);
 			a[index] = current.element;
-			toArray(current.right, a, index + 1);
-			
-			return index + 1;
-		}
+			index = toArray(current.right, a, index + 1);
+		} */
+		
+		if (current.left != null) index = toArray(current.left, a, index);
+		a[index] = current.element;
+		if (current.right != null) index = toArray(current.right, a, index + 1);
+		
+		return index;
 	}
 	
 	/*
@@ -174,7 +206,17 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(E[] a, int first, int last) {
+		if (first > last)
+			return null;
+
+		int mid = (first + last) / 2;
 		
+		BinaryNode<E> rootNode = new BinaryNode<E>(a[mid]);
+		
+		rootNode.left = buildTree(a, first, mid - 1);
+		rootNode.right = buildTree(a, mid + 1, last);
+		
+		return rootNode;
 	}
 	
 

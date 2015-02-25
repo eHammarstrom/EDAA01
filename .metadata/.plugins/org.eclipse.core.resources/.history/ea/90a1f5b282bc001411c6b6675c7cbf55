@@ -1,0 +1,66 @@
+package map;
+
+public class SimpleHashMap<K, V> implements Map<K, V> {
+	private int size;
+	private int capacity;
+	private float loadFactor;
+	Entry[] table;
+	
+	public SimpleHashMap() {
+		size = 0;
+		capacity = 16;
+		loadFactor = 0.75f;
+		table = new Entry[capacity];
+	}
+	
+	public SimpleHashMap(int capacity) {
+		size = 0;
+		loadFactor = 0.75f;
+		table = new Entry[capacity];
+	}
+
+	public V get(Object arg0) {
+		return null;
+	}
+
+	public boolean isEmpty() {
+		return (size == 0);
+	}
+
+	public V put(K arg0, V arg1) {
+		return null;
+	}
+
+	public V remove(Object arg0) {
+		return null;
+	}
+
+	public int size() {
+		return size;
+	}
+
+	private static class Entry<K,V> implements Map.Entry<K,V> {
+		private K key;
+		private V value;
+		private Entry<K,V> next;
+		
+		public K getKey() {
+			return key;
+		}
+		
+		public V getValue() {
+			return value;
+		}
+		
+		public V setValue(V value) {
+			V oldValue = this.value;
+			this.value = value;
+			return oldValue;
+		}
+		
+		public String toString() {
+			return key + " = " + value;
+		}
+		
+	}
+}
