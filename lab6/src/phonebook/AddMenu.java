@@ -15,6 +15,13 @@ public class AddMenu extends JMenuItem implements ActionListener {
 	}
 	
 	 public void actionPerformed(ActionEvent e) {
-		
+		 String name = JOptionPane.showInputDialog("Input name: ");
+		 
+		 String number = JOptionPane.showInputDialog("Input number: ");
+		 
+		 if (number != null && name != null && name.length() > 1 && number.length() > 1) {
+			 phoneBook.put(name, number);
+			 gui.getMessageArea().append(name + " - " + number + " has been added.\n");
+		 }
 	 }
 }

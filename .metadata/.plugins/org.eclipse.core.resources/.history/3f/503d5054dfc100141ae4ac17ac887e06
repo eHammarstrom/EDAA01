@@ -1,0 +1,21 @@
+package phonebook;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenuItem;
+
+@SuppressWarnings("serial")
+public class ShowAllMenu extends JMenuItem implements ActionListener {
+	PhoneBook phonebook;
+	
+	public ShowAllMenu(PhoneBook phonebook) {
+		super("Show all");
+		this.phonebook = phonebook;
+		addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		
+	}
+}
