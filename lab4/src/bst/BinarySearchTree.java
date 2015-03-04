@@ -14,9 +14,11 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
     	bst.add(9);
     	bst.add(11);
     	bst.add(13);
+    	bst.add(12);
+    	bst.add(8);
     	bst.add(1);
     	bst.add(7);
-    	bst.add(5);
+    	bst.add(57);
     	
 //    	for (int i = 1; i < 11; i++)
 //    		bst.add(i);
@@ -187,15 +189,16 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * position in a).
 	 */
 	private int toArray(BinaryNode<E> current, E[] a, int index) {
-		/* if (current != null) {
-			index = toArray(current.left, a, index);
-			a[index] = current.element;
-			index = toArray(current.right, a, index + 1);
-		} */
 		
-		if (current.left != null) index = toArray(current.left, a, index);
-		a[index] = current.element;
-		if (current.right != null) index = toArray(current.right, a, index + 1);
+		 if (current != null) {
+			index = toArray(current.left, a, index);
+			a[index++] = current.element;
+			index = toArray(current.right, a, index);
+		} 
+		
+//		index = toArray(current.left, a, index);
+//		a[index] = current.element;
+//		index = toArray(current.right, a, index + 1);
 		
 		return index;
 	}

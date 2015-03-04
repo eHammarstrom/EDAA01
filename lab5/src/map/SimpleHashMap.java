@@ -26,31 +26,64 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		SimpleHashMap shm = new SimpleHashMap();
-		
-		shm.put("Siffra", 1);
-		shm.put("Siffra", 10);
-		shm.put(213, 1232);
-		shm.put("Hej", 12312);
-		shm.put(1, 213);
-		shm.put(1, 123);
-		
+		SimpleHashMap<Integer, Integer> shm = new SimpleHashMap<Integer, Integer>();
+//		
+//		shm.put("Siffra", 1);
+//		shm.put("Siffra", 10);
+//		shm.put(213, 1232);
+//		shm.put("Hej", 12312);
+//		shm.put(1, 213);
+//		shm.put(1, 123);
+//		
+//		System.out.println(shm.show());
+//		
+//		System.out.println(shm.find(shm.index(1), 1));
+//		System.out.println(shm.find(shm.index("Siffra"), "Siffra"));
+//		System.out.println(shm.find(shm.index("Hej"), 1));
+//		System.out.println(shm.find(shm.index("Hej"), "Hej"));
+//		System.out.println(shm.find(shm.index(213), 213));
+		shm.put(3,4);
+		shm.put(19,5);
+		shm.put(35,6);
+		shm.put(787,7);
+		shm.put(8,4);
+		shm.put(6,5);
+		shm.put(7,6);
+		shm.put(9,7);
 		System.out.println(shm.show());
+		shm.put(7,14);
+		shm.put(5,15);
+		shm.put(4,16);
+		shm.put(19,17);
+		shm.put(122,17);
+		shm.put(27,14);
+//		shm.put(35,15);
+//		shm.put(44,16);
+//		shm.put(519,17);
+//		shm.put(6222,17);
+//		shm.put(335,15);
+//		shm.put(424,16);
+//		shm.put(5119,17);
+//		shm.put(6242,17);
+		System.out.println(shm.show());
+		System.out.println(shm.getLength());
 		
-		System.out.println(shm.find(shm.index(1), 1));
-		System.out.println(shm.find(shm.index("Siffra"), "Siffra"));
-		System.out.println(shm.find(shm.index("Hej"), 1));
-		System.out.println(shm.find(shm.index("Hej"), "Hej"));
-		System.out.println(shm.find(shm.index(213), 213));
+		
+		
+		
 	}
-
+	
+	public int getLength(){
+		return table.length;
+	}
+	
 	public V get(Object key) {
 		@SuppressWarnings("unchecked")
 		Entry<K,V> item = find(index((K) key), (K) key);
 		
 		if (item != null)
 			return item.value;
-		// Om item är null borde inte item.value också vara null?
+		// Om item ï¿½r null borde inte item.value ocksï¿½ vara null?
 		// return item.value;
 		return null;
 	}
@@ -60,15 +93,15 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 	}
 
 	/*
-	 * 1. Platsen i vektorn tom och då lägger du bara till den. 
-	 * 2. Platsen i vektorn är inte tom och du får lägga till den först/sist på kedjan. 
-	 * 3. Key finns redan i Hash-tabellen och då ska du skriva över den och returnera det gamla värdet. i
+	 * 1. Platsen i vektorn tom och dï¿½ lï¿½gger du bara till den. 
+	 * 2. Platsen i vektorn ï¿½r inte tom och du fï¿½r lï¿½gga till den fï¿½rst/sist pï¿½ kedjan. 
+	 * 3. Key finns redan i Hash-tabellen och dï¿½ ska du skriva ï¿½ver den och returnera det gamla vï¿½rdet. i
 	 * 
-	 * Medans detta sker skall loadFactor ej överstiga 0.75, då måste vektorn expanderas.:W
+	 * Medans detta sker skall loadFactor ej ï¿½verstiga 0.75, dï¿½ mï¿½ste vektorn expanderas.:W
 	 * 
 	 */
 	public V put(K key, V value) {
-		if ((float) size / capacity > loadFactor)
+		if ((float) (size / capacity) > loadFactor)
 			rehash();
 		
 		int index = index(key);
@@ -126,9 +159,10 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		for (int index = 0; index < table.length; index++) {
 			Entry<K,V> item = table[index];
 			while (item != null) {
-				sb.append(index + "\t" + item.toString() + "\n");
+				sb.append(index + "\t" + item.toString() + " ,");
 				item = item.next;
 			}
+			sb.append("\n");
 		}
 		
 		return sb.toString();
@@ -136,6 +170,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 	
 	@SuppressWarnings("unchecked")
 	private void rehash() {
+		System.out.println("Rehashing now");
 		capacity = capacity * 2;
 		
 		Entry<K,V>[] oldTable = table;

@@ -1,0 +1,24 @@
+*START
+Emil Hammarstr�m
+123
+87213487124
+*END
+*START
+Gloopy Gloop-eye
+123
+*END
+*START
+asd
+dddd
+fffff
+kkkk
+asd
+*END
+*START
+bbbasd
+asd
+*END
+*START
+addd
+fgfgf
+*END
