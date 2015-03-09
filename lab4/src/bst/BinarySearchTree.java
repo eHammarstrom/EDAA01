@@ -3,7 +3,6 @@ package bst;
 public class BinarySearchTree<E extends Comparable<? super E>> {
 	BinaryNode<E> root;
     int size;
-    int height;
     boolean hasAdded;
     
     public static void main(String[] args) {
@@ -46,7 +45,8 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Constructs an empty binary searchtree.
 	 */
 	public BinarySearchTree() {
-		
+		root = null;
+		size = 0;
 	}
 
 	/**
@@ -69,6 +69,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	private BinaryNode<E> add(BinaryNode<E> current, E x) {
 		if (current == null) {
 			hasAdded = true;
+			size++;
 			return new BinaryNode<E>(x);
 		} else if (x.compareTo(current.element) == 0) {
 			hasAdded = false;
@@ -168,7 +169,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 			E[] a = (E[]) new Comparable[size()];
 			//toArray(root, a, 0);
 			
-			root = buildTree(a, 0, toArray(root, a, 0));
+			root = buildTree(a, 0, toArray(root, a, 0) - 1);
 			
 			for (E e : a) {
 				if (e != null)

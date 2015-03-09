@@ -1,0 +1,17 @@
+package calculator;
+
+public class OprKey extends JButton implements ActionListener {
+	private StackComputing sc;
+	private Operation opr;
+	
+	public OprKey(StackComputing sc, Operation opr, String label) {
+		super(label);
+		this.sc = sc;
+		this.opr = opr;
+		addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent event) {
+		sc.execute(opr);
+	}
+}

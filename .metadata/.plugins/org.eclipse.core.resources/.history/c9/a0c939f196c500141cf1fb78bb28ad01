@@ -1,0 +1,24 @@
+package calculator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+public class NumKey extends JButton implements ActionListener {
+	private StackComputing sc;
+	private int value;
+	private NumKey nk;
+	
+	public NumKey(StackComputing sc, NumKey nk, int value, String label) {
+		super(label);
+		this.sc = sc;
+		this.value = value;
+		this.nk = nk;
+		addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent event) {
+		nk.setText(nk.getText() + value);
+	}
+}

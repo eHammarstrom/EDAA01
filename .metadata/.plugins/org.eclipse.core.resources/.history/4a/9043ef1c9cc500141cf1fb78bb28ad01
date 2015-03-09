@@ -1,0 +1,23 @@
+package calculator;
+
+import java.util.Scanner;
+
+public class RunTextMode {
+	
+	public static void main(String[] args) {
+		CalculatorStack cs = new CalculatorStack(4);
+		
+		StackComputing stc = new StackComputing(cs);
+		
+		Scanner sc = new Scanner(System.in);
+		
+		while (!sc.next().equalsIgnoreCase("quit")) {
+			String inData = sc.next();
+			
+			switch (inData) {
+			case "*":
+				
+			}
+		}
+	}
+}

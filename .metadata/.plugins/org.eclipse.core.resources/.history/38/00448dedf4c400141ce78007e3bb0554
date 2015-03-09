@@ -1,0 +1,44 @@
+package calculator;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class CalculatorFrame extends JFrame {
+	StackComputing sc;
+	
+	public CalculatorFrame(StackComputing sc) {
+		super("Calculator");
+		this.sc = sc;
+		
+		setSize(400, 350);
+		setResizable(false);
+		
+		
+		
+		setLayout(new BorderLayout());
+		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new FlowLayout());
+		mainPanel.add(new NumField(32));
+		mainPanel.add(new NumField(32));
+		mainPanel.add(new NumField(32));
+		mainPanel.add(new NumField(32));
+		mainPanel.add(new OprKey())
+		
+		add(mainPanel, BorderLayout.CENTER);
+
+		setVisible(true);
+	}
+	
+	private class NumField extends JTextField {
+		
+		public NumField(int cols) {
+			super(cols);
+		}
+		
+	}
+}

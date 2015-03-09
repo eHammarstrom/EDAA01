@@ -57,12 +57,12 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		shm.put(19,17);
 		shm.put(122,17);
 		shm.put(27,14);
-//		shm.put(35,15);
-//		shm.put(44,16);
-//		shm.put(519,17);
-//		shm.put(6222,17);
-//		shm.put(335,15);
-//		shm.put(424,16);
+		shm.put(35,15);
+		shm.put(44,16);
+		shm.put(519,17);
+		shm.put(6222,17);
+		shm.put(335,15);
+		shm.put(424,16);
 //		shm.put(5119,17);
 //		shm.put(6242,17);
 		System.out.println(shm.show());
@@ -101,9 +101,6 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 	 * 
 	 */
 	public V put(K key, V value) {
-		if ((float) (size / capacity) > loadFactor)
-			rehash();
-		
 		int index = index(key);
 		
 		Entry<K,V> item = find(index(key), key);
@@ -121,6 +118,9 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		
 		table[index] = item;
 		size++;
+		
+		if ((float) size / capacity > loadFactor)
+			rehash();
 		
 		return null;
 	}
