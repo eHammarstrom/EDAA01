@@ -12,7 +12,7 @@ public class OprKey extends JButton implements ActionListener {
 	private StackComputing sc;
 	private Operation opr;
 	
-	public OprKey(StackComputing sc, Operation opr, String label, NumField[] nf) {
+	public OprKey(StackComputing sc, Operation opr, String label) {
 		super(label);
 		this.sc = sc;
 		this.opr = opr;
@@ -22,17 +22,5 @@ public class OprKey extends JButton implements ActionListener {
 	
 	public void actionPerformed(ActionEvent event) {
 		sc.execute(opr);
-		/*
-		switch (opr) {
-		case PLUS:
-			sc.execute(opr);
-			nf[0] = Integer.parseInt(nf[0]) + Integer.parseInt(nf[1]);
-			break;
-		case MINUS:
-			...
-			...
-			break;
-		}
-		 */
 	}
 }

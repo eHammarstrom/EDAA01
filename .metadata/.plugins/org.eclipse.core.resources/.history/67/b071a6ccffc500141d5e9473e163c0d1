@@ -21,7 +21,7 @@ public class OprKey extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		sc.execute(opr);
+		
 		/*
 		switch (opr) {
 		case PLUS:
@@ -29,9 +29,7 @@ public class OprKey extends JButton implements ActionListener {
 			nf[0] = Integer.parseInt(nf[0]) + Integer.parseInt(nf[1]);
 			break;
 		case MINUS:
-			...
-			...
-			break;
+		
 		}
 		 */
 	}

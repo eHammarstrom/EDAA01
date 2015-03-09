@@ -21,7 +21,7 @@ public class OprKey extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		sc.execute(opr);
+		
 		/*
 		switch (opr) {
 		case PLUS:

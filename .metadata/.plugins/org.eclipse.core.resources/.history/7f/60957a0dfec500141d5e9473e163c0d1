@@ -9,10 +9,6 @@ public class StackComputing {
 		cs = new CalculatorStack(4);
 	}
 	
-	public CalculatorStack getStack() {
-		return cs;
-	}
-	
 	public void execute(Operation operation) {
 		switch (operation) {
 		case PLUS:

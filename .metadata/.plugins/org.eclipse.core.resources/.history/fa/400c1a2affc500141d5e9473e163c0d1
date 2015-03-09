@@ -12,7 +12,6 @@ import static calculator.Operation.*;
 public class CalculatorFrame extends JFrame {
 	StackComputing sc;
 	NumField nf1, nf2, nf3, nf4;
-	NumField[] nf = { nf1, nf2, nf3, nf4 };
 	
 	public CalculatorFrame(StackComputing sc) {
 		super("Calculator");
@@ -38,10 +37,10 @@ public class CalculatorFrame extends JFrame {
 		mainPanel.add(nf3);
 		mainPanel.add(nf4);
 		
-		OprKey oprEnter = new OprKey(sc, ENTER, "Enter", nf);
-		OprKey oprCHS = new OprKey(sc, CHS, "CHS", nf);
-		OprKey oprCLX = new OprKey(sc, CLEAR, "CLX", nf);
-		OprKey oprCSTK = new OprKey(sc, CLEARSTACK, "CSTK", nf);
+		OprKey oprEnter = new OprKey(sc, ENTER, "Enter");
+		OprKey oprCHS = new OprKey(sc, CHS, "CHS");
+		OprKey oprCLX = new OprKey(sc, CLEAR, "CLX");
+		OprKey oprCSTK = new OprKey(sc, CLEARSTACK, "CSTK");
 		
 		mainPanel.add(oprEnter);
 		mainPanel.add(oprCHS);
@@ -79,7 +78,7 @@ public class CalculatorFrame extends JFrame {
 		
 	}
 	
-	/* public NumField[] getFields() {
+	public NumField[] getFields() {
 		NumField[] nfRet = new NumField[4];
 		
 		nfRet[0] = nf1;
@@ -88,5 +87,5 @@ public class CalculatorFrame extends JFrame {
 		nfRet[3] = nf4;
 		
 		return nfRet;
-	} */
+	}
 }
