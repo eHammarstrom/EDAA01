@@ -1,0 +1,95 @@
+package calculator;
+
+import static calculator.Operation.*;
+
+public class StackComputing {
+	CalculatorStack cs;
+	
+	public StackComputing() {
+		cs = new CalculatorStack(4);
+	}
+	
+	public int[] getStack() {
+		return cs.getStack();
+	}
+	
+	public void execute(Operation operation) {
+		switch (operation) {
+		case PLUS:
+			plus();
+			break;
+		case MINUS:
+			minus();
+			break;
+		case TIMES:
+			times();
+			break;
+		case DIVIDES:
+			divides();
+			break;
+		case ENTER:
+			enter();
+			break;
+		case CLEAR:
+			clear();
+			break;
+		case CHS:
+			chs();
+			break;
+		case CLEARSTACK:
+			clearstack();
+			break;
+		}
+	}
+	
+	private int plus() {
+		int temp = cs.pop() + cs.pop();
+		
+		return cs.push(temp);
+	}
+	
+	private int minus() {
+		int temp = cs.pop() - cs.pop();
+		
+		return cs.push(temp);
+	}
+	
+	private int times() {
+		int temp = cs.pop() * cs.pop();
+		
+		return cs.push(temp);
+	}
+	
+	private int divides() {
+		int temp = 0;
+		int temp0 = cs.pop();
+		int temp1 = cs.pop();
+		
+		if (temp0 != 0 && temp1 != 0)
+			return temp = temp0 / temp1;
+		else {
+			cs.push(temp1);
+			cs.push(temp0);
+			return -1;
+		}
+	}
+	
+	private int enter() {
+		int temp0 = cs.pop();
+		cs.push(temp0);
+		return cs.push(temp0);
+	}
+	
+	private void clear() {
+		cs.push(0);
+	}
+	
+	private void chs() {
+		cs.push(-cs.pop());
+	}
+	
+	private void clearstack() {
+		for (int i = 0; i < 5; i++) 
+			cs.push(0);
+	}
+}

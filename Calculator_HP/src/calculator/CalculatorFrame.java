@@ -1,6 +1,7 @@
 package calculator;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
@@ -18,10 +19,8 @@ public class CalculatorFrame extends JFrame {
 		super("Calculator");
 		this.sc = sc;
 		
-		setSize(400, 350);
+		setSize(400, 370);
 		setResizable(false);
-		
-		
 		
 		setLayout(new BorderLayout());
 		
@@ -38,25 +37,39 @@ public class CalculatorFrame extends JFrame {
 		mainPanel.add(nf3);
 		mainPanel.add(nf4);
 		
-		OprKey oprEnter = new OprKey(sc, ENTER, "Enter", nf);
-		OprKey oprCHS = new OprKey(sc, CHS, "CHS", nf);
-		OprKey oprCLX = new OprKey(sc, CLEAR, "CLX", nf);
-		OprKey oprCSTK = new OprKey(sc, CLEARSTACK, "CSTK", nf);
+		OprKey oprEnter = new OprKey(sc, ENTER, "Enter", this);
+		OprKey oprCHS = new OprKey(sc, CHS, "CHS", this);
+		OprKey oprCLX = new OprKey(sc, CLEAR, "CLX", this);
+		OprKey oprCSTK = new OprKey(sc, CLEARSTACK, "CSTK", this);
+		OprKey oprPlus = new OprKey(sc, PLUS, "+", this);
+		OprKey oprMinus = new OprKey(sc, MINUS, "-", this);
+		OprKey oprTimes = new OprKey(sc, TIMES, "*", this);
+		OprKey oprDivides = new OprKey(sc, DIVIDES, "/", this);
+		
+		oprPlus.setPreferredSize(new Dimension(74, 30));
+		oprMinus.setPreferredSize(new Dimension(74, 30));
+		oprTimes.setPreferredSize(new Dimension(74, 30));
+		oprDivides.setPreferredSize(new Dimension(74, 30));
+		
 		
 		mainPanel.add(oprEnter);
 		mainPanel.add(oprCHS);
 		mainPanel.add(oprCLX);
 		mainPanel.add(oprCSTK);
-		mainPanel.add(new NumKey(nf1, "1"));
-		mainPanel.add(new NumKey(nf1, "2"));
-		mainPanel.add(new NumKey(nf1, "3"));
-		mainPanel.add(new NumKey(nf1, "4"));
-		mainPanel.add(new NumKey(nf1, "5"));
-		mainPanel.add(new NumKey(nf1, "6"));
-		mainPanel.add(new NumKey(nf1, "7"));
-		mainPanel.add(new NumKey(nf1, "8"));
-		mainPanel.add(new NumKey(nf1, "9"));
-		mainPanel.add(new NumKey(nf1, "0"));
+		mainPanel.add(oprPlus);
+		mainPanel.add(oprMinus);
+		mainPanel.add(oprTimes);
+		mainPanel.add(oprDivides);
+		mainPanel.add(new NumKey(sc, "1", this));
+		mainPanel.add(new NumKey(sc, "2", this));
+		mainPanel.add(new NumKey(sc, "3", this));
+		mainPanel.add(new NumKey(sc, "4", this));
+		mainPanel.add(new NumKey(sc, "5", this));
+		mainPanel.add(new NumKey(sc, "6", this));
+		mainPanel.add(new NumKey(sc, "7", this));
+		mainPanel.add(new NumKey(sc, "8", this));
+		mainPanel.add(new NumKey(sc, "9", this));
+		mainPanel.add(new NumKey(sc, "0", this));
 		
 		add(mainPanel, BorderLayout.CENTER);
 
@@ -72,14 +85,10 @@ public class CalculatorFrame extends JFrame {
 			setHorizontalAlignment(JTextField.RIGHT);
 			setEnabled(false);
 		}
-		
-		public void refreshField() {
-			
-		}
-		
+
 	}
 	
-	/* public NumField[] getFields() {
+	public NumField[] getFields() {
 		NumField[] nfRet = new NumField[4];
 		
 		nfRet[0] = nf1;
@@ -88,5 +97,5 @@ public class CalculatorFrame extends JFrame {
 		nfRet[3] = nf4;
 		
 		return nfRet;
-	} */
+	}
 }

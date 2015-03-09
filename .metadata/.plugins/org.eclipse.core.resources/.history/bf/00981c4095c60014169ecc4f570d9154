@@ -1,0 +1,69 @@
+package calculator;
+
+import java.util.Scanner;
+
+import static calculator.Operation.*;
+
+public class RunTextMode {
+	
+	public static void main(String[] args) {
+		StackComputing stc = new StackComputing();
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String inData = sc.next().toLowerCase();
+		
+		while (!inData.equals("quit")) {
+			
+			switch (inData) {
+			case "+":
+				stc.execute(PLUS);
+				break;
+			case "*":
+				stc.execute(TIMES);
+				break;
+			case "/":
+				stc.execute(DIVIDES);
+				break;
+			case "enter":
+				stc.execute(ENTER);
+				break;
+			case "clear":
+				stc.execute(CLEAR);
+				break;
+			case "chs":
+				stc.execute(CHS);
+				break;
+			case "clearstack":
+				stc.execute(CLEARSTACK);
+				break;
+			}
+			
+			try {
+				int numInput = Integer.parseInt(inData);
+				
+				if (isBetween(numInput, 0, 9) && numInput >= 0 && numInput <= 9)
+					stc.getStack()[0] = stc.getStack()[0] + numInput;
+				else
+					System.out.println("Calculators only accept one number at once, from 0-9.");
+			} catch(Exception e) {
+				System.out.println("That is not a valid number.");
+			}
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append("The stack:\n");
+			
+			for (int i = 0; i < 4; i++)
+				sb.append("[" + i + "]: " + stc.getStack()[i] + "\n");
+			
+			System.out.println(sb.toString());
+			
+			inData = sc.next().toLowerCase();
+		}
+		
+	}
+
+	private static boolean isBetween(int x, int lower, int upper) {
+		return lower <= x && x <= upper;
+	}
+}

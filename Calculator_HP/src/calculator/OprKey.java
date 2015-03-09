@@ -11,28 +11,33 @@ import calculator.CalculatorFrame.NumField;
 public class OprKey extends JButton implements ActionListener {
 	private StackComputing sc;
 	private Operation opr;
+	private CalculatorFrame cf;
 	
-	public OprKey(StackComputing sc, Operation opr, String label, NumField[] nf) {
+	public OprKey(StackComputing sc, Operation opr, String label, CalculatorFrame cf) {
 		super(label);
 		this.sc = sc;
 		this.opr = opr;
+		this.cf = cf;
 		setPreferredSize(new Dimension(85, 50));
 		addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent event) {
+		//String num = cf.getFields()[0].getText();
+		//sc.getStack()[0] = Integer.parseInt(num);
 		sc.execute(opr);
-		/*
-		switch (opr) {
-		case PLUS:
-			sc.execute(opr);
-			nf[0] = Integer.parseInt(nf[0]) + Integer.parseInt(nf[1]);
-			break;
-		case MINUS:
-			...
-			...
-			break;
+		
+		for (int i = 0; i < 4; i++) {
+			cf.getFields()[i].setText(Integer.toString(sc.getStack()[i]));
 		}
-		 */
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("This Stack:\n");
+		for (int n : sc.getStack())
+			sb.append(n + "\n");
+		
+		System.out.println(sb);
 	}
+	
 }

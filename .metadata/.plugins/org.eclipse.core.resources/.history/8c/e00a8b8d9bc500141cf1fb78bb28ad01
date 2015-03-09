@@ -1,8 +1,0 @@
-package calculator;
-
-public class RunTextMode {
-	
-	public static void main(String[] args) {
-		
-	}
-}
