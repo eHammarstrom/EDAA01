@@ -1,0 +1,46 @@
+package calculator;
+
+public class CalculatorStack {
+	int arr[];
+	
+	public static void main(String[] args) {
+		CalculatorStack cs = new CalculatorStack(4);
+		
+//		cs.push(23);
+//		cs.push(45);
+		
+		System.out.println(cs.toString());
+	}
+	
+	public CalculatorStack(int size) {
+		arr = new int[size];
+	}
+	
+	public boolean empty() {
+		
+		return false;
+	}
+	
+	public void push(int num) {
+		
+	}
+	
+	public int pop() {
+		
+		return 0;
+	}
+	
+	public int peek() {
+		
+		return 0;
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		for (int n : arr)
+			sb.append(n + " ");
+		
+		return sb.toString();
+	}
+}

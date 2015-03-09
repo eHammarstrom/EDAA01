@@ -1,0 +1,47 @@
+package phonebook;
+import javax.swing.*;
+
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
+public class LoadButton extends JButton implements ActionListener {
+	private PhoneBook phoneBook;
+	private PhoneBookGUI gui;
+
+	public LoadButton(PhoneBook phoneBook, PhoneBookGUI gui) {
+		super("Load");
+		this.phoneBook = phoneBook;
+		this.gui = gui;
+		addActionListener(this);
+	}
+	
+	 public void actionPerformed(ActionEvent e) {
+		 /* try {
+			 FileDialog fd = new FileDialog(new Frame(), "Load...", FileDialog.LOAD);
+			 fd.setFile("*.txt");
+			 fd.setDirectory(".\\");
+			 fd.setLocation(50, 50);
+			 fd.show();
+			 
+			 String fileName = fd.getFile();
+			 
+			 try {
+				 ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+				 
+				 phoneBook = (PhoneBook) in.readObject();
+			 } catch (Exception exception) {
+				 exception.printStackTrace();
+			 }
+		 } catch (Exception exception) {
+			 exception.printStackTrace();
+		 } */
+		 
+		 // http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
+		 
+		 JFileChooser chooser = new JFileChooser();
+		 int returnVal = chooser.showOpenDialog(gui);
+	 }
+}

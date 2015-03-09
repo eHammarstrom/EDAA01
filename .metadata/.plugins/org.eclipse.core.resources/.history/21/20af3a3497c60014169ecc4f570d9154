@@ -1,0 +1,90 @@
+package calculator;
+
+import java.util.Scanner;
+
+import static calculator.Operation.*;
+
+public class RunTextMode {
+	
+	public static void main(String[] args) {		
+		StackComputing stc = new StackComputing();
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String inData = sc.next().toLowerCase();
+		boolean isEnter = false;
+		boolean isOperated = false;
+		
+		while (!inData.equals("quit")) {
+			
+			switch (inData) {
+			case "+":
+				stc.execute(PLUS);
+				isOperated = true;
+				break;
+			case "-":
+				stc.execute(MINUS);
+				isOperated = true;
+				break;
+			case "*":
+				stc.execute(TIMES);
+				isOperated = true;
+				break;
+			case "/":
+				stc.execute(DIVIDES);
+				isOperated = true;
+				break;
+			case "enter":
+				stc.execute(ENTER);
+				isEnter = true;
+				break;
+			case "clear":
+				stc.execute(CLEAR);
+				break;
+			case "chs":
+				stc.execute(CHS);
+				break;
+			case "clearstack":
+				stc.execute(CLEARSTACK);
+				break;
+			}
+			
+			try {
+				int numInput = Integer.parseInt(inData);
+				
+				if (isBetween(numInput, 0, 9) && numInput >= 0 && numInput <= 9) {
+					if (isEnter)
+						stc.getStack()[0] = numInput;
+					else if (isOperated) {
+						stc.getStack()[3] = stc.getStack()[2];
+						stc.getStack()[2] = stc.getStack()[1];
+						stc.getStack()[1] = stc.getStack()[0];
+						stc.getStack()[0] = numInput;
+					} else
+						stc.getStack()[0] = (stc.getStack()[0] * 10) + numInput;
+					
+					isEnter = false;
+				}
+				else
+					System.out.println("Calculators only accept one number at once, from 0-9.");
+			} catch(Exception e) {
+				System.out.println("That is not a valid number.");
+			}
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append("The stack:\n");
+			
+			for (int i = 0; i < 4; i++)
+				sb.append("[" + i + "]: " + stc.getStack()[i] + "\n");
+			
+			System.out.println(sb.toString());
+			
+			inData = sc.next().toLowerCase();
+		}
+		
+	}
+
+	private static boolean isBetween(int x, int lower, int upper) {
+		return lower <= x && x <= upper;
+	}
+}

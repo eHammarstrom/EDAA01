@@ -1,0 +1,26 @@
+package calculator;
+
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+import calculator.CalculatorFrame.NumField;
+
+public class OprKey extends JButton implements ActionListener {
+	private StackComputing sc;
+	private Operation opr;
+	
+	public OprKey(StackComputing sc, Operation opr, String label, NumField[] nf) {
+		super(label);
+		this.sc = sc;
+		this.opr = opr;
+		setPreferredSize(new Dimension(85, 50));
+		addActionListener(this);
+	}
+	
+	public void actionPerformed(ActionEvent event) {
+		sc.execute(opr);
+	}
+}

@@ -1,0 +1,25 @@
+package phonebook;
+import javax.swing.*;
+
+import java.awt.event.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class LoadButton extends JButton implements ActionListener {
+	private PhoneBook phoneBook;
+	private PhoneBookGUI gui;
+
+	public LoadButton(PhoneBook phoneBook, PhoneBookGUI gui) {
+		super("Load");
+		this.phoneBook = phoneBook;
+		this.gui = gui;
+		addActionListener(this);
+	}
+	
+	 public void actionPerformed(ActionEvent e) {
+		
+	 }
+}

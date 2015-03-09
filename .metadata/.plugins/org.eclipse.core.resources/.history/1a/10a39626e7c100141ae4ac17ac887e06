@@ -1,0 +1,20 @@
+package phonebook;
+import javax.swing.*;
+
+import java.awt.event.*;
+
+public class LoadButton extends JButton implements ActionListener {
+	private PhoneBook phoneBook;
+	private PhoneBookGUI gui;
+
+	public LoadButton(PhoneBook phoneBook, PhoneBookGUI gui) {
+		super("Load");
+		this.phoneBook = phoneBook;
+		this.gui = gui;
+		addActionListener(this);
+	}
+	
+	 public void actionPerformed(ActionEvent e) {
+		
+	 }
+}

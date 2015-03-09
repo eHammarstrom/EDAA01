@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/DailyProgrammer/src/easy_200_floodfill_NOT_WORKING/Main.java"/>
+<listEntry value="/lab6/src/phonebook/Main.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="easy_200_floodfill_NOT_WORKING.Main"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="DailyProgrammer"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="phonebook.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="lab6"/>
 </launchConfiguration>

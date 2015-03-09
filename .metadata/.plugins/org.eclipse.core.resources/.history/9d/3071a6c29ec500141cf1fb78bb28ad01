@@ -1,0 +1,13 @@
+package calculator;
+
+public class RunGUIMode {
+	
+	public static void main(String[] args) {
+		CalculatorStack cs = new CalculatorStack(4);
+		
+		StackComputing sc = new StackComputing(cs);
+		
+		CalculatorFrame cf = new CalculatorFrame(sc);
+	}
+	
+}

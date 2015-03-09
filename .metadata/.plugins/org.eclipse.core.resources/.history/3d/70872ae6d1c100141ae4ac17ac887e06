@@ -1,0 +1,16 @@
+package phonebook;
+
+public class Main {
+	public static void main(String[] args) {	
+		PhoneBook pb = new PhoneBook();
+		
+		pb.put("Emil Hammarström", "123");
+		pb.put("Gloopy Gloop-eye", "123");
+		pb.put("Emil Hammarström", "87213487124");
+		
+		System.out.println(pb.findNames("123"));
+		
+//		new PhoneBookGUI(pb);
+	}
+
+}

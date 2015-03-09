@@ -1,0 +1,29 @@
+package phonebook;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+@SuppressWarnings("serial")
+public class FindNamesMenu extends JMenuItem implements ActionListener {
+	private PhoneBook phoneBook;
+	private PhoneBookGUI gui;
+	
+	public FindNamesMenu(PhoneBook phoneBook, PhoneBookGUI gui) {
+		super("Find name(s)");
+		this.phoneBook = phoneBook;
+		this.gui = gui;
+		addActionListener(this);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		String number = JOptionPane.showInputDialog("Input name: ");
+		
+		if (number != null && number.length() > 1) {
+			gui.getMessageArea().append(number + " connects to = " + phoneBook.findNames(number).toString() + "\n");
+		}
+	}
+	
+}

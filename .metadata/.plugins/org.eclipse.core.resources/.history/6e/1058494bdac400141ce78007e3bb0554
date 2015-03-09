@@ -1,0 +1,31 @@
+package calculator;
+
+public class CalculatorStack {
+	int addPos;
+	int arr[];
+	
+	public CalculatorStack(int size) {
+		arr = new int[size];
+		addPos = 0;
+	}
+	
+	public boolean empty() {
+		
+		return false;
+	}
+	
+	public void push(int num) {
+		
+	}
+	
+	public int pop() {
+		
+		return 0;
+	}
+	
+	public int peek() {
+		
+		return 0;
+	}
+	
+}

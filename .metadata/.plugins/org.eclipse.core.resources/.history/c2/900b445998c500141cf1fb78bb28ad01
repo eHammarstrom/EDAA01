@@ -1,0 +1,75 @@
+package calculator;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import static calculator.Operation.*;
+
+public class CalculatorFrame extends JFrame {
+	StackComputing sc;
+	
+	public CalculatorFrame(StackComputing sc) {
+		super("Calculator");
+		this.sc = sc;
+		
+		setSize(400, 350);
+		setResizable(false);
+		
+		
+		
+		setLayout(new BorderLayout());
+		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new FlowLayout());
+		
+		NumField nf1 = new NumField(32);
+		nf1.setEnabled(false);
+		NumField nf2 = new NumField(32);
+		nf2.setEnabled(false);
+		NumField nf3 = new NumField(32);
+		nf3.setEnabled(false);
+		NumField nf4 = new NumField(32);
+		nf4.setEnabled(false);
+
+		mainPanel.add(nf1);
+		mainPanel.add(nf2);
+		mainPanel.add(nf3);
+		mainPanel.add(nf4);
+		
+		OprKey oprEnter = new OprKey(sc, ENTER, "Enter");
+		OprKey oprCHS = new OprKey(sc, CHS, "CHS");
+		OprKey oprCLX = new OprKey(sc, CLEAR, "CLX");
+		OprKey oprCSTK = new OprKey(sc, CLEARSTACK, "CSTK");
+		
+		mainPanel.add(oprEnter);
+		mainPanel.add(oprCHS);
+		mainPanel.add(oprCLX);
+		mainPanel.add(oprCSTK);
+		mainPanel.add(new NumKey(nf1, 1, "1"));
+		mainPanel.add(new NumKey(nf1, 2, "2"));
+		mainPanel.add(new NumKey(nf1, 3, "3"));
+		mainPanel.add(new NumKey(nf1, 4, "4"));
+		mainPanel.add(new NumKey(nf1, 5, "5"));
+		mainPanel.add(new NumKey(nf1, 6, "6"));
+		mainPanel.add(new NumKey(nf1, 7, "7"));
+		mainPanel.add(new NumKey(nf1, 8, "8"));
+		mainPanel.add(new NumKey(nf1, 9, "9"));
+		mainPanel.add(new NumKey(nf1, 0, "0"));
+		
+		add(mainPanel, BorderLayout.CENTER);
+
+		setVisible(true);
+	}
+	
+	public class NumField extends JTextField {
+		
+		public NumField(int cols) {
+			super(cols);
+		}
+		
+	}
+}
