@@ -8,7 +8,7 @@ public class StackComputing {
 	private boolean isOperated = false;
 	
 	public StackComputing() {
-		cs = new CalculatorStack(4);
+		cs = new CalculatorStack();
 	}
 	
 	public int[] getStack() {
