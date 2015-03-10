@@ -19,8 +19,8 @@ public class CalculatorStack {
 		System.out.println(cs.toString());
 	} */
 	
-	public CalculatorStack(int size) {
-		arr = new int[size];
+	public CalculatorStack() {
+		arr = new int[4];
 	}
 	
 	public int[] getStack() {
