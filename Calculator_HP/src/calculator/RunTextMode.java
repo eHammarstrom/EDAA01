@@ -12,33 +12,28 @@ public class RunTextMode {
 		Scanner sc = new Scanner(System.in);
 		
 		String inData = sc.next().toLowerCase();
-		boolean isEnter = false;
-		boolean isOperated = false;
 		
 		while (!inData.equals("quit")) {
 			
 			switch (inData) {
 			case "+":
 				stc.execute(PLUS);
-				isOperated = true;
 				break;
 			case "-":
 				stc.execute(MINUS);
-				isOperated = true;
 				break;
 			case "*":
 				stc.execute(TIMES);
-				isOperated = true;
 				break;
 			case "/":
 				stc.execute(DIVIDES);
-				isOperated = true;
 				break;
 			case "enter":
+			case "e":
 				stc.execute(ENTER);
-				isEnter = true;
 				break;
 			case "clear":
+			case "cls":
 				stc.execute(CLEAR);
 				break;
 			case "chs":
@@ -53,17 +48,23 @@ public class RunTextMode {
 				int numInput = Integer.parseInt(inData);
 				
 				if (isBetween(numInput, 0, 9) && numInput >= 0 && numInput <= 9) {
-					if (isEnter)
-						stc.getStack()[0] = numInput;
-					else if (isOperated) {
+					if (!stc.getIsPressed())
+						stc.getStack()[0] = (stc.getStack()[0] * 10) + numInput;
+
+					if (stc.getIsOperated()) {
 						stc.getStack()[3] = stc.getStack()[2];
 						stc.getStack()[2] = stc.getStack()[1];
 						stc.getStack()[1] = stc.getStack()[0];
 						stc.getStack()[0] = numInput;
-					} else
-						stc.getStack()[0] = (stc.getStack()[0] * 10) + numInput;
-					
-					isEnter = false;
+						
+						stc.setIsOperated(false);
+						stc.setIsPressed(false);
+					}
+
+					if (stc.getIsPressed()) {
+						stc.getStack()[0] = numInput;
+						stc.setIsPressed(false);
+					}
 				}
 				else
 					System.out.println("Calculators only accept one number at once, from 0-9.");

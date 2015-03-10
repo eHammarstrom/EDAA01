@@ -30,11 +30,8 @@ public class NumKey extends JButton implements ActionListener {
 		
 		if (!nf1.getText().equals("0") && sc.getIsPressed() == false) {
 			String num = nf1.getText() + label;
-			
 			nf1.setText(num);
-			
 			sc.getStack()[0] = Integer.parseInt(num);
-			//System.out.println(sc.getStack()[0]);
 		}
 		
 		if (sc.getIsOperated()) {
