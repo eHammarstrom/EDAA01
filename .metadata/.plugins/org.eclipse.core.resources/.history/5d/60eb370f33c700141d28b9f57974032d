@@ -6,12 +6,10 @@ import static calculator.Operation.*;
 
 public class RunTextMode {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		StackComputing stc = new StackComputing();
 		
 		Scanner sc = new Scanner(System.in);
-		
-		sc.
 		
 		String inData = sc.next().toLowerCase();
 		
@@ -20,6 +18,9 @@ public class RunTextMode {
 			switch (inData) {
 			case "+":
 				stc.execute(PLUS);
+				break;
+			case "-":
+				stc.execute(MINUS);
 				break;
 			case "*":
 				stc.execute(TIMES);
@@ -44,14 +45,27 @@ public class RunTextMode {
 			try {
 				int numInput = Integer.parseInt(inData);
 				
-				if (isBetween(numInput, 0, 9))
-					stc.getStack()[0] = stc.getStack()[0] + numInput;
+				if (isBetween(numInput, 0, 9) && numInput >= 0 && numInput <= 9) {
+					if (stc.getIsOperated()) {
+						stc.getStack()[3] = stc.getStack()[2];
+						stc.getStack()[2] = stc.getStack()[1];
+						stc.getStack()[1] = stc.getStack()[0];
+						stc.getStack()[0] = numInput;
+					}
+
+					if (stc.getIsPressed())
+						stc.getStack()[0] = numInput;
+						stc.getStack()[0] = (stc.getStack()[0] * 10) + numInput;
+					
+				}
+				else
+					System.out.println("Calculators only accept one number at once, from 0-9.");
 			} catch(Exception e) {
-				System.out.println("That is not a valid number. Calculators only compute one number at once.");
+				
 			}
 			
 			StringBuilder sb = new StringBuilder();
-			sb.append("The stack:\n");
+			sb.append("\nThe stack:\n");
 			
 			for (int i = 0; i < 4; i++)
 				sb.append("[" + i + "]: " + stc.getStack()[i] + "\n");

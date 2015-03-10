@@ -4,7 +4,7 @@ import static calculator.Operation.*;
 
 public class StackComputing {
 	CalculatorStack cs;
-	private boolean isEnter = false;
+	private boolean isPressed = false;
 	private boolean isOperated = false;
 	
 	public StackComputing() {
@@ -15,16 +15,16 @@ public class StackComputing {
 		return cs.getStack();
 	}
 	
-	public void setIsPressed(boolean set) { isEnter = set; }
+	public void setIsPressed(boolean set) { isPressed = set; }
 	
-	public boolean getIsPressed() { return isEnter; }
+	public boolean getIsPressed() { return isPressed; }
 	
 	public void setIsOperated(boolean set) { isOperated = set; }
 	
 	public boolean getIsOperated() { return isOperated; }
 	
 	public void execute(Operation operation) {
-		isEnter = true;
+		isPressed = true;
 		
 		switch (operation) {
 		case PLUS:

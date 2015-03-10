@@ -23,8 +23,6 @@ public class OprKey extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent event) {
-		//String num = cf.getFields()[0].getText();
-		//sc.getStack()[0] = Integer.parseInt(num);
 		sc.execute(opr);
 		
 		for (int i = 0; i < 4; i++) {
@@ -33,7 +31,7 @@ public class OprKey extends JButton implements ActionListener {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("This Stack:\n");
+		sb.append("Test print the stack:\n");
 		for (int n : sc.getStack())
 			sb.append(n + "\n");
 		
